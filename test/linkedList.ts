@@ -1,0 +1,115 @@
+import test from 'ava'
+import { LinkedList } from '../src/linkedList'
+
+test('empty linkedList', t => {
+  const linkedList = new LinkedList()
+  t.is(linkedList.head, null)
+  t.is(linkedList.tail, null)
+})
+// addToHead
+test('addToHead one node to an empty linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToHead(1)
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.tail?.value, 1)
+})
+test('addToHead one node to a non-empty linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToHead(1)
+  linkedList.addToHead(0)
+  t.is(linkedList.head?.value, 0)
+  t.is(linkedList.head?.next?.value, 1)
+  t.is(linkedList.tail?.value, 1)
+  t.is(linkedList.tail?.prev?.value, 0)
+})
+// addToTail
+test('addToTail one node to an empty linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToTail(1)
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.tail?.value, 1)
+})
+test('addToTail one node to a non-empty linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToTail(1)
+  linkedList.addToTail(2)
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.head?.next?.value, 2)
+  t.is(linkedList.tail?.value, 2)
+  t.is(linkedList.tail?.prev?.value, 1)
+})
+// removeHead
+test('removeHead from empty linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.removeHead()
+  t.is(linkedList.head, null)
+  t.is(linkedList.tail, null)
+})
+test('removeHead from linkedList with one node', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToHead(1)
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.tail?.value, 1)
+  linkedList.removeHead()
+  t.is(linkedList.head, null)
+  t.is(linkedList.tail, null)
+})
+test('removeHead from linkedList with three node', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToHead(2)
+  linkedList.addToHead(1)
+  linkedList.addToTail(3)
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.tail?.value, 3)
+  linkedList.removeHead()
+  t.is(linkedList.head?.value, 2)
+  t.is(linkedList.tail?.value, 3)
+})
+// removeTail
+test('removeTail from empty linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.removeTail()
+  t.is(linkedList.head, null)
+  t.is(linkedList.tail, null)
+})
+test('removeTail from linkedList with one node', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToHead(1)
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.tail?.value, 1)
+  linkedList.removeTail()
+  t.is(linkedList.head, null)
+  t.is(linkedList.tail, null)
+})
+test('removeTail from linkedList with three node', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToHead(2)
+  linkedList.addToHead(1)
+  linkedList.addToTail(3)
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.tail?.value, 3)
+  linkedList.removeTail()
+  t.is(linkedList.head?.value, 1)
+  t.is(linkedList.tail?.value, 2)
+})
+// search
+test('search returns correct value from linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToHead(2)
+  linkedList.addToHead(1)
+  linkedList.addToTail(3)
+  t.is(linkedList.search(5), null)
+  t.is(linkedList.search(3), 3)
+})
+// indexesOf
+test('indexesOf returns correct values from linkedList', t => {
+  const linkedList = new LinkedList()
+  linkedList.addToTail(2)
+  linkedList.addToTail(1)
+  linkedList.addToTail(3)
+  linkedList.addToTail(1)
+  linkedList.addToTail(1)
+  linkedList.addToTail(5)
+  t.deepEqual(linkedList.indexesOf(5), [5])
+  t.deepEqual(linkedList.indexesOf(1), [1, 3, 4])
+})
