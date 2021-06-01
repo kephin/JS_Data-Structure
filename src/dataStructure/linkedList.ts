@@ -1,9 +1,9 @@
 export class LinkedList {
-  head: (null | Nodee) = null
-  tail: (null | Nodee) = null
+  head: (null | Node) = null
+  tail: (null | Node) = null
 
   addToHead(value: number): void {
-    const newNode = new Nodee(value, null, this.head)
+    const newNode = new Node(value, null, this.head)
     if (this.head) { // was not empty
       this.head.prev = newNode
       this.head = newNode
@@ -12,7 +12,7 @@ export class LinkedList {
     }
   }
   addToTail(value: number): void {
-    const newNode = new Nodee(value, this.tail, null)
+    const newNode = new Node(value, this.tail, null)
     if (this.tail) {
       this.tail.next = newNode
       this.tail = newNode
@@ -61,11 +61,11 @@ export class LinkedList {
   }
 }
 
-export class Nodee {
+export class Node {
   constructor(
     public value: number,
-    public prev: (null | Nodee),
-    public next: (null | Nodee)
+    public prev: (null | Node),
+    public next: (null | Node)
   ) {
     this.value = value
     this.prev = prev

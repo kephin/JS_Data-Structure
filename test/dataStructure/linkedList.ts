@@ -1,5 +1,5 @@
 import test from 'ava'
-import { LinkedList } from '../src/linkedList'
+import { LinkedList } from '../../src/dataStructure/linkedList'
 
 test('empty linkedList', t => {
   const linkedList = new LinkedList()
