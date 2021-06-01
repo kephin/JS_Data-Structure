@@ -1,7 +1,7 @@
 {
-  "name": "algorithms",
+  "name": "data-structure-and-algorithms",
   "version": "1.0.0",
-  "description": "",
+  "description": "data structure and algorithms",
   "main": "",
   "scripts": {
     "test": "ava",
