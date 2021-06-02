@@ -44,12 +44,11 @@ export class HashTable {
   }
   retrieveAll() {
     const nodes = []
-    const current = this.buckets
     for (let index = 0; index < this.length(); index++) {
-      let element = this.buckets[index] as (HashNode | null)
-      while (element) {
-        nodes.push(element)
-        element = element.next
+      let currentNode = this.buckets[index] as (HashNode | null)
+      while (currentNode) {
+        nodes.push(currentNode)
+        currentNode = currentNode.next
       }
     }
     return nodes
